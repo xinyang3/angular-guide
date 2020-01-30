@@ -1,22 +1,22 @@
+<!-- 1 英雄编辑器 !-->
 <div>
   id = {{hero.id}}
   name = {{hero.name | uppercase}}
-  <!-- 1 英雄编辑器 -->
   <label>name:
     <input [(ngModel)]="hero.name" placeholder="hero  name">
   </label>
 </div>
+<!--  2 英雄列表 !-->
 <div>
-  <!--  2 英雄列表 !-->
   <div class="aside">
     <h2>My Heroes</h2>
-    <!--<ul class="heroes">-->
-      <!--<li *ngFor="let hero of heroes" (click)="onSelect(hero)"  [class.selected]="selectedHero === hero">-->
-        <!--<span class="badge">{{hero.id}}</span> {{hero.name}}-->
-      <!--</li>-->
-    <!--</ul>-->
-    <!--<div *ngIf="selectedHero">-->
-      <!--<h2>{{selectedHero.name | uppercase}} Details</h2>-->
+    <ul class="heroes">
+      <li *ngFor="let hero of heroes" (click)="onSelect(hero)"  [class.selected]="selectedHero === hero">
+        <span class="badge">{{hero.id}}</span> {{hero.name}}
+      </li>
+    </ul>
+    <!--<div *ngIf="selectedHero" class="heroes-select-details">-->
+      <!--<h2>{{ selectedHero.name | uppercase }} Details</h2>-->
       <!--<div><span>id: </span>{{selectedHero.id}}</div>-->
       <!--<div>-->
         <!--<label>name:-->
@@ -24,16 +24,16 @@
         <!--</label>-->
       <!--</div>-->
     <!--</div>-->
+    <!-- 3 主从结构 -->
+    <app-hero-detail [hero]="selectedHero" class="heroes-select-details"></app-hero-detail>
   </div>
-  <!-- 3 主从结构 -->
-  <!--<app-hero-detail [hero]="selectedHero"></app-hero-detail>-->
-  <div class="aside">
-    <ul class="heroes">
-      <li *ngFor="let hero of heroes">
-        <a routerLink="/detail/{{hero.id}}">
-          <span class="badge">{{hero.id}}</span> {{hero.name}}
-        </a>
-      </li>
-    </ul>
-  </div>
+  <!--<div class="aside">-->
+    <!--<ul class="heroes">-->
+      <!--<li *ngFor="let hero of heroes">-->
+        <!--<a routerLink="/detail/{{hero.id}}">-->
+          <!--<span class="badge">{{hero.id}}</span> {{hero.name}}-->
+        <!--</a>-->
+      <!--</li>-->
+    <!--</ul>-->
+  <!--</div>-->
 </div>
