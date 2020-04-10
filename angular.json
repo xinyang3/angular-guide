@@ -3,7 +3,7 @@
   "version": 1,
   "newProjectRoot": "projects",
   "projects": {
-    "my-ng": {
+    "ng-guide": {
       "root": "",
       "sourceRoot": "src",
       "projectType": "application",
@@ -13,7 +13,7 @@
         "build": {
           "builder": "@angular-devkit/build-angular:browser",
           "options": {
-            "outputPath": "dist/my-ng",
+            "outputPath": "dist/ng-guide",
             "index": "src/index.html",
             "main": "src/main.ts",
             "polyfills": "src/polyfills.ts",
@@ -57,18 +57,18 @@
         "serve": {
           "builder": "@angular-devkit/build-angular:dev-server",
           "options": {
-            "browserTarget": "my-ng:build"
+            "browserTarget": "ng-guide:build"
           },
           "configurations": {
             "production": {
-              "browserTarget": "my-ng:build:production"
+              "browserTarget": "ng-guide:build:production"
             }
           }
         },
         "extract-i18n": {
           "builder": "@angular-devkit/build-angular:extract-i18n",
           "options": {
-            "browserTarget": "my-ng:build"
+            "browserTarget": "ng-guide:build"
           }
         },
         "test": {
@@ -102,7 +102,7 @@
         }
       }
     },
-    "my-ng-e2e": {
+    "ng-guide-e2e": {
       "root": "e2e/",
       "projectType": "application",
       "prefix": "",
@@ -111,11 +111,11 @@
           "builder": "@angular-devkit/build-angular:protractor",
           "options": {
             "protractorConfig": "e2e/protractor.conf.js",
-            "devServerTarget": "my-ng:serve"
+            "devServerTarget": "ng-guide:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "my-ng:serve:production"
+              "devServerTarget": "ng-guide:serve:production"
             }
           }
         },
@@ -129,7 +129,156 @@
           }
         }
       }
+    },
+    "app-store": {
+      "root": "projects/app-store/",
+      "sourceRoot": "projects/app-store/src",
+      "projectType": "application",
+      "prefix": "app",
+      "schematics": {
+        "@schematics/angular:class": {
+          "skipTests": true
+        },
+        "@schematics/angular:component": {
+          "skipTests": true
+        },
+        "@schematics/angular:directive": {
+          "skipTests": true
+        },
+        "@schematics/angular:guard": {
+          "skipTests": true
+        },
+        "@schematics/angular:module": {
+          "skipTests": true
+        },
+        "@schematics/angular:pipe": {
+          "skipTests": true
+        },
+        "@schematics/angular:service": {
+          "skipTests": true
+        }
+      },
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/app-store",
+            "index": "projects/app-store/src/index.html",
+            "main": "projects/app-store/src/main.ts",
+            "polyfills": "projects/app-store/src/polyfills.ts",
+            "tsConfig": "projects/app-store/tsconfig.app.json",
+            "assets": [
+              "projects/app-store/src/favicon.ico",
+              "projects/app-store/src/assets"
+            ],
+            "styles": [
+              "projects/app-store/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "projects/app-store/src/environments/environment.ts",
+                  "with": "projects/app-store/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "app-store:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "app-store:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "app-store:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "projects/app-store/src/test.ts",
+            "polyfills": "projects/app-store/src/polyfills.ts",
+            "tsConfig": "projects/app-store/tsconfig.spec.json",
+            "karmaConfig": "projects/app-store/karma.conf.js",
+            "styles": [
+              "projects/app-store/src/styles.css"
+            ],
+            "scripts": [],
+            "assets": [
+              "projects/app-store/src/favicon.ico",
+              "projects/app-store/src/assets"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "projects/app-store/tsconfig.app.json",
+              "projects/app-store/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "app-store-e2e": {
+      "root": "projects/app-store-e2e/",
+      "projectType": "application",
+      "prefix": "",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "projects/app-store-e2e/protractor.conf.js",
+            "devServerTarget": "app-store:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "app-store:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "projects/app-store-e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
     }
   },
-  "defaultProject": "my-ng"
+  "defaultProject": "ng-guide"
 }
