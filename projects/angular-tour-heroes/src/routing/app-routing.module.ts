@@ -2,6 +2,9 @@ import { NgModule, Component } from '@angular/core'
 import { Routes, RouterModule } from '@angular/router';
 import { FormsModule } from '@angular/forms'
 import { CommonModule } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import { HttpClientInMemoryWebApiModule } from 'angular-in-memory-web-api';
+import { InMemoryDataService } from '../services/InMemoryDataService';
 
 import { HeroesComponent } from '../components/heroes/heroes.component';
 import { HomeComponent } from '../components/home/home.component';
@@ -10,6 +13,7 @@ import { MessageComponent } from '../components/message/message.component'
 import { DashboardComponent } from '../components/dashboard/dashboard.component'
 import { HeroDetailComponent } from '../components/hero-detail/hero-detail.component'
 import { Heroes2Component } from '../components/heroes2/heroes2.component'
+import { HeroSearchComponent } from '../components/heroes-search/heroes-search.component'
 
 const routes: Routes = [
   {
@@ -34,11 +38,16 @@ const routes: Routes = [
     MessageComponent,
     DashboardComponent,
     HeroDetailComponent,
-    Heroes2Component
+    Heroes2Component,
+    HeroSearchComponent
   ],
   imports: [RouterModule.forRoot(routes),
     FormsModule,
-    CommonModule
+    CommonModule,
+    HttpClientModule,
+  HttpClientInMemoryWebApiModule.forRoot(
+    InMemoryDataService, { dataEncapsulation: false }
+  )
   ],
   exports: [RouterModule]
 })
